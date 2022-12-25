@@ -74,4 +74,4 @@ famous musicians (concert pianists), based on their style of playing. Johannes K
 - Zheng, R. (2022). *Look/hear*. [link](https://www.ranzhengdesign.com/look-hear/)
 
 ### Acknowledgements
-A huge thanks to Manuel Lages for the careful hand-made bookbinding and to the teaching staff for all the advice and availability throughout every stage of this project — [Sérgio Rebelo](https://cdv.dei.uc.pt/authors/sergio-rebelo/), [Tiago Martins](http://cdv.dei.uc.pt/people/tiago-martins/), [João Cunha](https://cdv.dei.uc.pt/authors/joao-cunha/), [Penousal Machado](https://cdv.dei.uc.pt/authors/penousal-machado/) and [Pedro Silva](https://cdv.dei.uc.pt/authors/pedro-silva/).
+A huge thanks to Manuel Lages for the careful hand-made bookbinding and to the teaching staff for all the advice and availability throughout every stage of this project — [Tiago Martins](http://cdv.dei.uc.pt/people/tiago-martins/), [Sérgio Rebelo](https://cdv.dei.uc.pt/authors/sergio-rebelo/), [João Cunha](https://cdv.dei.uc.pt/authors/joao-cunha/), [Penousal Machado](https://cdv.dei.uc.pt/authors/penousal-machado/) and [Pedro Silva](https://cdv.dei.uc.pt/authors/pedro-silva/).
