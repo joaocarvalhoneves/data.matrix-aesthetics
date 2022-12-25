@@ -67,8 +67,6 @@ p. 56. [link](https://www.awn.com/mag/issue2.5/2.5pages/2.5moritzwhitney.html)
 - Synthestruct. (2021). *Vast*. [link](https://www.synthestruct.com/vast/)
 - Rush, D. (2019). *Dasha rush presents: Aurora cerebralis*. [link](https://vimeo.com/357400767)
 - Sa, A. (2016). *A Perceptual Approach to Audio-Visual Instrument Design, Composition and Performance*. Goldsmiths, University of London. [link](https://www.researchgate.net/publication/310313683_A_Perceptual_Approach_to_Audio-Visual_Instrument_Design_Composition_and_Performance)
-- Shim, K. (2020). *Computational approach to graphic design*. The International Journal
-of Visual Design 14(1). [link](https://cgscholar.com/bookstore/works/computational-approach-to-graphic-design)
 - Widmer, G. and Zanon. P. (2004). *Automatic recognition of famous artists by machine*. Recognising
 famous musicians (concert pianists), based on their style of playing. Johannes Kepler University Linz. [link](https://www.researchgate.net/publication/200806395_Automatic_Recognition_of_Famous_Artists_by_Machine) 
 - Zheng, R. (2022). *Look/hear*. [link](https://www.ranzhengdesign.com/look-hear/)
