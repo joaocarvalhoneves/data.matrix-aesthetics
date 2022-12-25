@@ -1,7 +1,7 @@
 # data.matrix-aesthetics
 This repository contains the computational material used for a visual essay series inspired by the sonic universe. While embracing static mediums, it assembles a collection of artworks of distinct interpretations of data-matrix, a composition from the audiovisual artist Ryoji Ikeda.
 
-![](/visual%20essays/gif.gif)
+ <img width="200" src="/visual%20essays/gif.gif" alt="Material Bread logo" align="center">
 *Selected visual essays.*
 
 ### About
