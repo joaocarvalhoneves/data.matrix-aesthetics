@@ -56,6 +56,43 @@ For the last stage we gathered our selection and started building the compendium
 - Martins, T. (2021). *Automated Evolution for Design*. University of Coimbra, Portugal. [[link](https://estudogeral.sib.uc.pt/handle/10316/96431)]
 - Shiffman, D. (2012). *The Evolution of Code*. In The Nature of Code (pp. 390–443). [[link](https://natureofcode.com/book/chapter-9-the-evolution-of-code/)]
 
+
+- Zheng, R. (2022). *Look/hear.* [link](https://www.ranzhengdesign.com/look-hear/)
+
+
+M. E. Bute, “Mary ellen bute: Pioneer animator,” Personal and professional life
+of Mary Ellen Bute, 2020.
+2. H. Balme, “Audiovisual hallucinations in the synesthetic films of jordan belson and
+james whitney,” Music and Synesthesia, p. 150, 2020.
+3. I. Gardiner, “Oskar fischinger,” Music, Sound, and the Moving Image, vol. 1, no. 1,
+pp. 117–118, 2007.
+4. L. Gibson, “John whitney: Technological visionary, animation pioneer,” Co-
+Editors: Jillian Coorey, Andre Murnieks, Heather Shaw and Rebecca Tegtmeyer,
+p. 56, 2019.
+5. J. Bonnett, “Design by numbers (john maeda),” A pioneering graphic designer
+shows how to use the computer as an artistic medium in its own right., 2000.
+6. D. Rush, “Dasha rush presents: Aurora cerebralis.” https://vimeo.com/357400767.
+(accessed Nov. 6, 2022).
+7. Synthestruct, “Vast.” https://www.synthestruct.com/vast/. (accessed Nov. 6,
+2022).
+8. R. Baecker, “floating codes - work in progress.” https://vimeo.com/619068326.
+(accessed Nov. 6, 2022).
+9. R. Ikeda, “Datamatics.” https://www.ryojiikeda.com/project/datamatics/datamatics.
+(accessed Nov. 6, 2022).
+
+11. S. D. Lab, “Ted g ̈ardestad.” https://www.stockholmdesignlab.se/work/ted-
+gardestad. (accessed Nov. 6, 2022).
+12. D. Mrugala, “Sound of space.” https://thedotisblack.com/tagged/space%20exploration.
+(accessed Nov. 6, 2022).
+13. G. Widmer, “Automatic recognition of famous artists by machine,” Recognising
+famous musicians (concert pianists), based on their style of playing., 2004.
+14. A. de Almeida Portela Viana De Sa, A Perceptual Approach to Audio-Visual Instru-
+ment Design, Composition and Performance. PhD thesis, Goldsmiths, University
+of London, November 2016.
+15. K. Shim, “Computational approach to graphic design,” The International Journal
+of Visual Design, 2020.
+16. M. Ash, “Simulation and visualization of a 3d fluid,” Master Thesis, 2005.
+
 ### Acknowledgements
 A huge thanks to Manuel Lages for the careful hand-made bookbinding and to the teaching staff for all the advice and availability throughout every stage of this project — [Sérgio Rebelo](https://cdv.dei.uc.pt/authors/sergio-rebelo/), [Tiago Martins](http://cdv.dei.uc.pt/people/tiago-martins/), [João Cunha](https://cdv.dei.uc.pt/authors/joao-cunha/), [Penousal Machado](https://cdv.dei.uc.pt/authors/penousal-machado/) and [Pedro Silva](https://cdv.dei.uc.pt/authors/pedro-silva/).
 
