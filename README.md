@@ -1,8 +1,10 @@
 # data.matrix-aesthetics
-This repository contains the computational material used for a visual essay series inspired by the sonic universe. While embracing static mediums, it assembles a collection of artworks of distinct interpretations of data-matrix, a composition from the audiovisual artist Ryoji Ikeda.
+This repository contains the computational material used for a visual essay series inspired by the sonic universe. While embracing static mediums, it assembles a collection of artworks of distinct interpretations of data-matrix, a composition from the audiovisual artist Ryoji Ikeda. <br>
+
  
 
-<p align="center">
+ 
+<p align="center"> 
   <img src="/visual%20essays/gif.gif">
 </p>
 <p align="center"> Selected visual essays. </p>
