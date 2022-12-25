@@ -27,13 +27,10 @@ void setup() {
   img3 = loadImage("img3.png");
   img4 = loadImage("img4.png");
   akk = createFont("akk.otf", 9);
-
-
   amp = new Amplitude(this);
   dm = new SoundFile(this, "dm.mp3");
   dm.play();
   amp.input(dm);
-
 
   for (int j = 0; j < 49; j++) {
     for (int i = 0; i < 42; i++) {

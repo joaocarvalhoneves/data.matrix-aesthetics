@@ -12,12 +12,11 @@ float y = 0;
 int num = 0;
 float med = 0;
 float maxamp = 0;
-ArrayList<Cross> c = new ArrayList<Cross>();
+ArrayList<Clock> c = new ArrayList<Clock>();
 ArrayList <PVector> matrix = new ArrayList<PVector>();
 
 void setup() {
   size(553, 645);
-
   amp = new Amplitude(this);
   dm = new SoundFile(this, "dm.mp3");
   dm.play();
@@ -43,7 +42,7 @@ void draw() {
     if (c.size() < 2254) {
       if (maxamp < vol) maxamp = vol;
       // 4 para cross (w)
-      c.add(new Cross(matrix.get(num).x, matrix.get(num).y, map(vol, 0, 7.865969, -PI/2, (3*PI)/2)));
+      c.add(new Clock(matrix.get(num).x, matrix.get(num).y, map(vol, 0, 7.865969, -PI/2, (3*PI)/2)));
     }
     if (num+1 < matrix.size())
       num++;

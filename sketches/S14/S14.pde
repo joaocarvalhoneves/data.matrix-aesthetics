@@ -1,153 +1,111 @@
-// 0 - 48000 (0:48)
-// 48000 - 144000 (2.24)
-// 144000 - 240000 (4:00)
-// 240000 - 336500 (5:37.5)
-// 336500 - 434000 (7:14)
-// 434000 - 508000 (8:28)
-// 508000 - 601000 (end)
-
-
 import ddf.minim.analysis.*;
 import ddf.minim.*;
 import processing.pdf.*;
-import java.util.Arrays;
-import java.io.*;
-import java.lang.*;
-import java.util.*;
-BeatDetect beats;
+
 Minim minim;
 AudioPlayer dm;
-Comparator<Rect> rectCompare = new RectCompare();
+FFT fft;
 
-boolean record;
-float counter = 0;
+int values [] = {250, 500, 1000};
+float band [] = new float [4];
+float maxvalues [] = new float [4];
+float mediumvalues [] = new float [4];
+String loadMax [];
+String loadMedium [];
 int num = 0;
-float maxa;
-ArrayList <Rect> r = new ArrayList <Rect>();
+int howmany [] = new int [4];
+float mediums [] = new float [4];
+float total = 0;
+boolean record = false;
 
 void setup() {
   size(553, 645);
   minim = new Minim(this);
   dm = minim.loadFile("dm.mp3", 1024);
   dm.play();
-  beats  = new BeatDetect(dm.bufferSize(), dm.sampleRate());
-  maxa = height/7;
-  for (int i = 0; i < 7; i++) {
-    r.add(new Rect(0, i*maxa, width, maxa));
+  fft = new FFT(dm.bufferSize(), dm.sampleRate());
+  loadMax = loadStrings("max4.txt");
+  loadMedium = loadStrings("output.txt");
+
+  for (int i = 0; i < band.length; i++) {
+    band[i] = 0;
+    maxvalues[i] = int(loadMax[i]);
+    mediumvalues[i] = 0;
+    howmany[i] = 0;
+    mediums[i] = float(loadMedium[i]);
+    total+= mediums[i];
   }
- // beats.setSensitivity(300);
+
+  for (int i = 0; i < band.length; i++) {
+    mediums[i] = map(map(mediums[i], 0, total, 0, 100), 0, 100, 0, height);
+    println(mediums[i]);
+  }
 }
 
 void draw() {
-  beats.detect(dm.mix);
+  background(255);
 
   if (record) {
     beginRecord(PDF, "frame-####.pdf");
   }
-
-  for (int i = 0; i < r.size(); i++) {
-    r.get(i).draw();
+  float gap = 12;
+  stroke(0);
+  for (int i = 0; i < width; i++) {
+    line(int(i*gap* cos(-PI/2)), int(height - 2 + i * gap * sin(-PI/2)), int(i * gap * cos(0)), int(height - 2 + i * gap * sin(0)));
   }
+
+  noStroke();
+  fill(255);
+  rect(0, 0, width, int(mediums[0] + mediums[1] + mediums[2]));
+
+  stroke(0);
+  for (int i = 0; i < width; i++) {
+    line(int(width + i * gap * cos(PI)), int(height - 2 + i * gap * sin(PI)), int(width + i * gap * cos(-PI/2)), int(height - 2 + i * gap * sin(-PI/2)));
+  }
+
+  noStroke();
+  fill(255);
+  rect(0, 0, width, int(mediums[1] + mediums[0] +3));
+
+
+  stroke(0);
+  for (int i = height; i > 0; i--) {
+    line(0, i * 6, width, i*6);
+  }
+  for (int i = 0; i < width; i++) {
+    line(i * 6, mediums[0]+3, i* 6, height);
+  }
+
+  /*
+  fft.forward(dm.mix);
+   
+   // GET MAX FOR EACH SPEC SIZE
+   for (int i = 0; i < fft.specSize(); i++) {
+   if (fft.indexToFreq(i) < values[0]) {
+   band[0]+= map(fft.getBand(i), 0, maxvalues[0], 0, 1);
+   howmany[0]++;
+   } else  if (fft.indexToFreq(i) < values[1]) {
+   band[1]+= map(fft.getBand(i), 0, maxvalues[1], 0, 1);
+   howmany[1]++;
+   } else  if (fft.indexToFreq(i) < values[2]) {
+   band[2]+= map(fft.getBand(i), 0, maxvalues[2], 0, 1);
+   howmany[2]++;
+   } else {
+   band[3]+= map(fft.getBand(i), 0, maxvalues[3], 0, 1);
+   howmany[3]++;
+   }
+   }
+   num++;
+   for (int i = 0; i < band.length; i++) {
+   mediumvalues[i] = band[i]/(num*howmany[i]);
+   howmany[i] = 0;
+   }
+   saveStrings("output.txt", str(mediumvalues));
+   */
 
   if (record) {
     endRecord();
     record = false;
-  }
-
-
-
-
-
-
-  if (beats.isRange(1, 3, 3)) {
-    Rect sortedR [] = new Rect [r.size()];
-    for (int i = 0; i < r.size(); i++) {
-      sortedR[i] = new Rect(r.get(i).x, r.get(i).y, r.get(i).l, r.get(i).a);
-    }
-    Arrays.sort(sortedR, rectCompare);
-
-    int pos = 0;
-    for (int i = sortedR.length-1; i >= 0; i--) {
-      if (dm.position() < 48000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7)
-          pos = i;
-      } else  if (dm.position() < 144000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*2 && sortedR[i].y + sortedR[i].a > height/7)
-          pos = i;
-      } else  if (dm.position() < 240000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*3 && sortedR[i].y + sortedR[i].a > height/7 * 2)
-          pos = i;
-      } else  if (dm.position() < 336500) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*4 && sortedR[i].y + sortedR[i].a > height/7 * 3)
-          pos = i;
-      } else  if (dm.position() < 434000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*5 && sortedR[i].y + sortedR[i].a > height/7 * 4)
-          pos = i;
-      } else  if (dm.position() < 508000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*6 && sortedR[i].y + sortedR[i].a > height/7 * 5)
-          pos = i;
-      } else {
-        if (sortedR[i].y + sortedR[i].a <= height/7*7 && sortedR[i].y + sortedR[i].a > height/7 * 6)
-          pos = i;
-      }
-    }
-
-    float l = sortedR[pos].l;
-    float a = sortedR[pos].a;
-    float x = sortedR[pos].x;
-    float y = sortedR[pos].y;
-    for (int i = 0; i < r.size(); i++) {
-      if (r.get(i).l == l && r.get(i).a == a && r.get(i).x == x && r.get(i).y == y)
-        r.remove(i);
-    }
-
-    r.add(new Rect(x, y, l, a/2));
-    r.add(new Rect(x, y+a/2, l, a/2));
-  }
-
-  if (beats.isRange(17, 20, 4)) {
-    Rect sortedR [] = new Rect [r.size()];
-    for (int i = 0; i < r.size(); i++) {
-      sortedR[i] = new Rect(r.get(i).x, r.get(i).y, r.get(i).l, r.get(i).a);
-    }
-    Arrays.sort(sortedR, rectCompare);
-
-    int pos = 0;
-    for (int i = sortedR.length-1; i >= 0; i--) {
-      if (dm.position() < 48000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7)
-          pos = i;
-      } else  if (dm.position() < 144000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*2 && sortedR[i].y + sortedR[i].a > height/7)
-          pos = i;
-      } else  if (dm.position() < 240000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*3 && sortedR[i].y + sortedR[i].a > height/7 * 2)
-          pos = i;
-      } else  if (dm.position() < 336500) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*4 && sortedR[i].y + sortedR[i].a > height/7 * 3)
-          pos = i;
-      } else  if (dm.position() < 434000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*5 && sortedR[i].y + sortedR[i].a > height/7 * 4)
-          pos = i;
-      } else  if (dm.position() < 508000) {
-        if (sortedR[i].y + sortedR[i].a <= height/7*6 && sortedR[i].y + sortedR[i].a > height/7 * 5)
-          pos = i;
-      } else {
-        if (sortedR[i].y + sortedR[i].a <= height/7*7 && sortedR[i].y + sortedR[i].a > height/7 * 6)
-          pos = i;
-      }
-    }
-
-    float l = sortedR[pos].l;
-    float a = sortedR[pos].a;
-    float x = sortedR[pos].x;
-    float y = sortedR[pos].y;
-    for (int i = 0; i < r.size(); i++) {
-      if (r.get(i).l == l && r.get(i).a == a && r.get(i).x == x && r.get(i).y == y)
-        r.remove(i);
-    }
-    r.add(new Rect(x, y, l/2, a));
-    r.add(new Rect(x+l/2, y, l/2, a));
   }
 }
 

@@ -1,82 +1,41 @@
-import ddf.minim.analysis.*;
-import ddf.minim.*;
+import processing.sound.*;
 import processing.pdf.*;
 
-Minim minim;
-AudioPlayer dm;
-FFT fft;
+Amplitude amp;
+SoundFile dm;
 boolean record;
-float band [];
-float maxvalues [];
-String loadMax [];
-String saveMax [];
-float counter = 0;
+float vol = 0;
+int counter = 0;
 float ang = 0;
-float maxvalue = 0;
+ArrayList <PVector> matrix = new ArrayList<PVector>();
 
 void setup() {
-  background(255);
   size(553, 645);
-
-  beginRecord(PDF, "every.pdf");
-
-  minim = new Minim(this);
-  dm = minim.loadFile("dm.mp3", 2048);
+  background(255);
+  beginRecord(PDF, "frame-####.pdf");
+  amp = new Amplitude(this);
+  dm = new SoundFile(this, "dm.mp3");
   dm.play();
-  fft = new FFT(dm.bufferSize(), dm.sampleRate());
-  loadMax = loadStrings("max502bands-201frame.txt");
-  band = new float [502];
-  maxvalues = new float [502];
-  saveMax = new String [502];
-
-  for (int i = 0; i < band.length; i++) {
-    band[i] = 0;
-    maxvalues[i] = 0;
-  }
+  amp.input(dm);
 }
 
 void draw() {
   counter++;
-  fft.forward(dm.mix);
+  vol+=amp.analyze();
 
-  for (int i = 0; i < band.length; i++) {
-    //if (fft.indexToFreq(i) > 4000)
-    //println(i);
-    band[i]+= fft.getBand(i);
-  }
-
-  // GET MAX FOR EACH SPEC SIZE
-  if (counter > 201) {
-    for (int i = 0; i < band.length; i++) {
-      //maxvalues[i] = max(band[i], maxvalues[i]);
-      // saveMax[i] = "" + maxvalues[i];
-      // println(maxvalues[i], band[i]);
-      // stroke(map(band[i], 0, float(loadMax[i]), 200, 0));
-      strokeWeight(1);
-      stroke(0);
-      strokeWeight(map(band[i], 0, float(loadMax[i]), 0.2, 1));
-        // AVERAGE FOR GAP
-        //   band[i]/= 201;
-        // if(maxvalue < band[i]) maxvalue = band[i];
-        // stroke(map(band[i], 0, 170.825, 200, 0));
-
-        line(width/2 + ((band.length - i+1-0.5))*cos(ang-PI/2),
-        height/2 + ((band.length - i+1-0.5))*sin(ang-PI/2),
-        width/2 + ((band.length - i+1-0.5))*cos(ang+radians(2)-PI/2),
-        height/2 + ((band.length - i+1-0.5))*sin(ang+radians(2) - PI/2));
-    }
-    // saveStrings("max502bands-201frame.txt", saveMax);
-    ang+= radians(2);
+  if (counter >= 100) {
+    vol/= 100;
+    stroke(0);
+    println(vol);
+    strokeWeight(map(vol, 0, 1, 0, 4));
+    line(width/2, height/2, width/2 + 276*cos(-PI/2 + ang), height/2 + 276*sin(-PI/2 + ang));
+    ang+=radians(1);
     counter = 0;
-    for (int i = 0; i < band.length; i++) {
-      band[i] = 0;
-    }
+    vol = 0;
   }
 }
 
-void keyPressed() {
-  if (key == 'q') {
-    endRecord();
-    exit();
-  }
+void mousePressed() {
+  endRecord();
+  exit();
 }

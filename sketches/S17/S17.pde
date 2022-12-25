@@ -1,70 +1,97 @@
-import ddf.minim.analysis.*;
-import ddf.minim.*;
+import processing.sound.*;
+import processing.pdf.*;
 
-Minim minim;
-AudioPlayer dm;
-FFT fft;
+Amplitude amp;
+SoundFile dm;
+FlowField f;
+boolean record;
+float vol = 0;
+int counter = 0;
+int num = 0;
+float maxamp = 0;
+ArrayList <PVector> matrix = new ArrayList<PVector>();
+ArrayList <PVector> coords = new ArrayList<PVector>();
+FloatList ang = new FloatList();
+String saveValues [];
+String loadString [];
+ArrayList<Vehicle> ve;
+boolean debug = true;
 
-int values [] = {250, 500, 1000};
-float band [] = new float [4];
-float newband [] = new float [4];
-float maxvalues [] = new float [4];
-String saveMax [] = new String [4];
-String loadMax [];
-float larg = 0;
-float smooth = 1;
-
-void setup()
-{
+void setup() {
   size(553, 645);
-  minim = new Minim(this);
-  dm = minim.loadFile("dm.mp3", 1024);
-  dm.play();
-  fft = new FFT( dm.bufferSize(), dm.sampleRate() );
-  rectMode(CORNER);
-  stroke(0);
-  loadMax = loadStrings("max4.txt");
 
-  for (int i = 0; i < band.length; i++) {
-    band[i] = 0;
-    newband[i] = 0;
-    maxvalues[i] = 0;
+  /*
+  amp = new Amplitude(this);
+   dm = new SoundFile(this, "dm.mp3");
+   dm.play();
+   amp.input(dm);
+   
+   
+   for (int j = 0; j < 25; j++) {
+   for (int i = 0; i < 21; i++) {
+   matrix.add(new PVector(14+i*26, 10+j*26));
+   }
+   }
+   
+   saveValues = new String [matrix.size()];
+   */
+
+  loadString = loadStrings("output.txt");
+
+  for (int i = 0; i < loadString.length; i++) {
+    coords.add(new PVector(float(split(loadString[i], ',')[0]), float(split(loadString[i], ',')[1])));
+    ang.append(float(split(loadString[i], ',')[2]));
   }
-  larg = width/band.length;
+  f = new FlowField();
+  ve = new ArrayList<Vehicle>();
 }
 
 void draw() {
+  if (record) {
+    beginRecord(PDF, "frame-####.pdf");
+  }
   background(255);
-  fft.forward(dm.mix);
-
-
-  // GET MAX FOR EACH SPEC SIZE
-  for (int i = 0; i < fft.specSize(); i++) {
-    if (fft.indexToFreq(i) < values[0]) {
-      band[0] = max(band[0], fft.getBand(i)) * smooth;
-    } else  if (fft.indexToFreq(i) < values[1]) {
-      band[1] = max(band[1], fft.getBand(i)) * smooth;
-    } else  if (fft.indexToFreq(i) < values[2]) {
-      band[2] = max(band[2], fft.getBand(i)) * smooth;
-    } else {
-      band[3] = max(band[3], fft.getBand(i)) * smooth;
-    }
-  }
- 
-
-  // GET OVERALL MAX AND MIN
-  for (int i = 0; i < band.length; i++) {
-    newband[i] += (band[i] - newband[i]) * smooth;
-    maxvalues[i] = max(maxvalues[i], newband[i]);
-    saveMax[i] = "" + maxvalues[i];
-  }
- //saveStrings("max4-smooth.txt", saveMax);
-
-  for (int i = 0; i < band.length; i++) {
-     rect((larg*i) + 2, height - map(newband[i], 0, float(loadMax[i]), 0, height), larg, map(newband[i], 0, float(loadMax[i]), 0, height));
+  if (debug) f.display();
+  for (Vehicle v : ve) {
+    v.follow(f);
+    v.run();
   }
 
-  for (int i = 0; i < band.length; i++) {
-    band[i] = 0;
+
+  counter++;
+  /*
+   vol+=amp.analyze();
+   if (counter > 64) {
+   if (maxamp < vol) maxamp = vol;
+   float ang = map(vol, 0, 4*7.865969, 0, TWO_PI);
+   c.add(new Cross(matrix.get(num).x, matrix.get(num).y, ang));
+   saveValues[num] = "" + matrix.get(num).x + "," + matrix.get(num).y + "," + ang;
+   
+   if (num+1 < matrix.size())
+   num++;
+   counter = 0;
+   vol = 0;
+   saveStrings("ouput.txt", saveValues);
+   }
+   */
+
+  if (record) {
+    endRecord();
+    record = false;
+  }
+}
+
+
+void keyPressed() {
+  if (key == ' ') {
+    debug = !debug;
+  } else if (key == 'a')
+    record = true;
+}
+
+void mouseDragged() {
+  if (counter > 5) {
+    ve.add(new Vehicle(new PVector(mouseX, mouseY), 3, 0.3));
+    counter = 0;
   }
 }

@@ -12,15 +12,12 @@ float ampConv = 0;
 float counter = 0;
 float vol = 0;
 
-
 void setup() {
   size(553, 645);
-
   amp = new Amplitude(this);
   dm = new SoundFile(this, "dm.mp3");
   dm.play();
   amp.input(dm);
-
   rectMode(CENTER);
 }
 
@@ -31,15 +28,12 @@ void draw() {
     beginRecord(PDF, "frame-####.pdf");
   }
   background(255);
-
   vol+= amp.analyze();
 
   if (counter >= 16) {
 
     ampConv = map(vol, 0, 7.865969, 1, 27);
-    
-     r.add(new Rect(x, y, ampConv));
-     
+     r.add(new Rect(x, y, ampConv)); 
      y+= ampConv+2;
     
     if (y > height) {

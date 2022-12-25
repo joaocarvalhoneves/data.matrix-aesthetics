@@ -6,7 +6,7 @@ Minim minim;
 AudioPlayer dm;
 FFT fft;
 ArrayList <PVector> matrix = new ArrayList<PVector>();
-ArrayList <Cross> c = new ArrayList<Cross>();
+ArrayList <Circle> c = new ArrayList<Circle>();
 boolean record;
 int values [] = {250, 500, 1000};
 float band [] = new float [4];
@@ -64,16 +64,23 @@ void draw() {
   }
 
   if (counter > 16) {
-
     float f [] = new float [band.length];
     for (int i = 0; i < band.length; i++) {
       maxvalues[i] = max(band[i], maxvalues[i]);
       //saveMax[i] = "" + maxvalues[i];
-      f[i] = map(band[i], 0, float(loadMax[i]), 0.5, 4);
+      f[i] = map(band[i], 0, float(loadMax[i]), 0, 1);
     }
-    f[3] = map(band[3], 0, 4000, 0.5, 4);
+    int which = 0;
+    if (f[0] > f[1] && f[0] > f[2] && f[0] > f[3])
+      which = 0;
+    else  if (f[1] > f[0] && f[1] > f[2] && f[1] > f[3])
+      which = 1;
+    else  if (f[2] > f[0] && f[2] > f[1] && f[2] > f[3])
+      which = 2;
+    else  if (f[3] > f[0] && f[3] > f[1] && f[3] > f[2])
+      which = 3;
 
-    c.add(new Cross(matrix.get(num).x, matrix.get(num).y, f[0], f[1], f[2], f[3]));
+    c.add(new Circle(matrix.get(num).x, matrix.get(num).y, which));
     num++;
     // saveStrings("max4-16frame.txt", saveMax);
 

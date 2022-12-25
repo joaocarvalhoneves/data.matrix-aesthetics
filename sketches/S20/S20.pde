@@ -1,123 +1,120 @@
-import processing.pdf.*;
 import ddf.minim.analysis.*;
 import ddf.minim.*;
+import processing.pdf.*;
+FFT fft;
 Minim minim;
 AudioPlayer dm;
-FFT fft;
-float r1 = 100;
-float r2 = 100;
-float m1 = 10;
-float m2 = 10;
-float a1 = PI/2;
-float a2 = PI/2;
-float a1_v = 0;
-float a2_v = 0;
-float a1_a = 0;
-float a2_a = 0;
-float g = 1;
-int counter = 0;
-PGraphics canvas;
-boolean record = false;
-ArrayList <PVector> p = new ArrayList <PVector>();
-StringList coords = new StringList ();
-String saveString [];
+Shape s [] = new Shape[7];
+Shape averageShape;
+int bands [] = {125, 250, 500, 1000, 2000};
+boolean record;
+float counter = 0;
+String loadString [];
+String loadAverage [][] = new String [7][];
+float meds [][] = new float[7][6];
+int num[] = new int[7];
+float averageofAverage [] = new float [6];
+
 
 void setup() {
   size(553, 645);
-  //size(2212, 2580);
-
   minim = new Minim(this);
   dm = minim.loadFile("dm.mp3", 1024);
-  fft = new FFT(dm.bufferSize(), dm.sampleRate() );
   dm.play();
-  background(255);
+  fft  = new FFT(dm.bufferSize(), dm.sampleRate());
+  loadString = loadStrings("max6.txt");
+  for (int i = 0; i < 7; i++) {
+    loadAverage[i] = loadStrings("averages_for_music_section_" + i + ".txt");
+    num[i] = 0;
+    s[i] = new Shape(loadAverage[i]);
+    for (int j = 0; j < 6; j++) {
+      meds[i][j] = 0;
+      averageofAverage[j] = 0;
+    }
+  }
+
+  for (int i = 0; i < s.length; i++) {
+    for (int j = 0; j < averageofAverage.length; j++) {
+      averageofAverage[j]+= s[i].valuesInt[j];
+    }
+  }
+  for (int i = 0; i < averageofAverage.length; i++) {
+    averageofAverage[i]/= averageofAverage.length;
+  }
+  averageShape = new Shape(int(averageofAverage), 0);
+
+  println(int(averageofAverage));
 }
 
 void draw() {
-  counter++;
-  fft.forward(dm.mix);
-  float amp = 0;
-  for (int i = 0; i < dm.bufferSize(); i++) {
-    amp+= fft.getBand(i);
-  }
-
-
-  m1 = map(amp, 0, 255, 20, 40);
-  amp = 0;
   background(255);
-
-  float x1 = r1 * sin(a1);
-  float y1 = r1 * cos(a1);
-  float x2 = x1 + r2 * sin(a2);
-  float y2 = y1 + r2 * cos(a2);
-
-  float num1 = -g * (2 * m1 + m2) * sin(a1);
-  float num2 = -m2 * g * sin(a1 - 2 * a2);
-  float num3 = -2 * sin(a1 - a2) * m2;
-  float num4 = a2_v * a2_v * r2 + a1_v * a1_v * r1 * cos(a1 - a2);
-  float num5 = r1 * (2 * m1 + m2 - m2 * cos(2 * a1 - 2 * a2));
-
-  a1_a = (num1 + num2 + num3 * num4) / num5;
-
-  num1 = 2 * sin(a1 - a2);
-  num2 = (a1_v * a1_v * r1 * (m1 + m2));
-  num3 = g * (m1 + m2) * cos(a1);
-  num4 = a2_v * a2_v * r2 * m2 * cos(a1-a2);
-  num5 = r2 * (2 * m1 + m2 - m2 * cos(2 * a1 - 2 * a2));
-
-  a2_a = (num1 * (num2 + num3 + num4)) / num5;
-
-  a1_v += a1_a;
-  a2_v += a2_a;
-  a1 += a1_v;
-  a2 += a2_v;
-
-
-  pushMatrix();
-  translate(width/2, height/2 -50);
-  fill(0);
-  line(0, 0, x1, y1);
-  ellipse(x1, y1, m1, m1);
-  line(x1, y1, x2, y2);
-  ellipse(x2, y2, m2, m2);
-  popMatrix();
-  
-  /*
-  for (int i = 0; i < p.size()-1; i++) {
-   line(p.get(i).x, p.get(i).y, p.get(i+1).x, p.get(i+1).y);
-   coords.append("" + p.get(i).x + "," + p.get(i).y);
-   }
-   */
-
+  fft.forward(dm.mix);
   if (record) {
     beginRecord(PDF, "frame-####.pdf");
   }
 
-  translate(width/2, height/2 - 50);
-
-  strokeWeight(1);
-  noFill();
-  stroke(0, 40);
-
-  for (int i = 0; i < p.size()-4; i++) {
-    beginShape();
-    for (int j = 0; j < 4; j++) {
-      curveVertex(p.get(i+j).x, p.get(i+j).y);
-    }
-    endShape();
+  if (dm.position() > 0 && dm.position() < 48000) {
+    setMed(0);
+    num[0]++;
+  } else if (dm.position() < 144000) {
+    setMed(1);
+    num[1]++;
+  } else if (dm.position() < 240000) {
+    setMed(2);
+    num[2]++;
+  } else if (dm.position() < 336500) {
+    setMed(3);
+    num[3]++;
+  } else if (dm.position() < 434000) {
+    setMed(4);
+    num[4]++;
+  } else if (dm.position() < 508000) {
+    setMed(5);
+    num[5]++;
+  } else if (dm.position() >= 508000) {
+    setMed(6);
+    num[6]++;
   }
 
-  p.add(new PVector(x2, y2));
+  for (int i = 0; i < s.length; i++) {
+    s[i].draw();
+  }
+
+  averageShape.draw();
 
   if (record) {
     endRecord();
     record = false;
-    p.clear();
   }
-  if (p.size() > 0)
-    println(p.get(0).x);
 }
 
-void mousePressed(){
+void mousePressed() {
   record = true;
+}
+
+void keyPressed() {
+  for (int i = 0; i < 7; i++) {
+    String saveString [] = new String[6];
+    for (int j = 0; j < 6; j++) {
+      float med = meds[i][j]/num[i];
+      saveString[j] = "" + str(med);
+    }
+    // saveStrings("averages" + i + ".txt", saveString);
+  }
+}
+
+void setMed(int a) {
+  for (int i = 0; i < fft.specSize(); i++) {
+    if (fft.indexToFreq(i) < bands[0])
+      meds[a][0]+= fft.getBand(i);
+    else if (fft.indexToFreq(i) < bands[1])
+      meds[a][1]+= fft.getBand(i);
+    else if (fft.indexToFreq(i) < bands[2])
+      meds[a][2]+= fft.getBand(i);
+    else if (fft.indexToFreq(i) < bands[3])
+      meds[a][3]+= fft.getBand(i);
+    else if (fft.indexToFreq(i) < bands[4])
+      meds[a][4]+= fft.getBand(i);
+    else meds[a][5]+= fft.getBand(i);
+  }
 }

@@ -1,55 +1,93 @@
-import processing.sound.*;
+import ddf.minim.analysis.*;
+import ddf.minim.*;
 import processing.pdf.*;
 
-Waveform waveform;
-SoundFile dm;
-boolean record;
-int counter = 0;
-float y = 0;
-int num = 0;
-int samples = 300;
-float total = 0;
+Minim minim;
+AudioPlayer dm;
+FFT fft;
 ArrayList <PVector> matrix = new ArrayList<PVector>();
 ArrayList <Cross> c = new ArrayList<Cross>();
+boolean record;
+int values [] = {250, 500, 1000};
+float band [] = new float [4];
+float maxvalues [] = new float [4];
+String saveMax [] = new String [4];
+String loadMax [];
+float counter = 0;
+int num = 0;
 
-void setup() {
+void setup()
+{
   size(553, 645);
-
-  waveform = new Waveform(this, samples);
-  dm = new SoundFile(this, "dm.mp3");
+  minim = new Minim(this);
+  dm = minim.loadFile("dm.mp3", 1024);
   dm.play();
-  waveform.input(dm);
+  fft = new FFT(dm.bufferSize(), dm.sampleRate() );
+  rectMode(CENTER);
+  stroke(0);
+  loadMax = loadStrings("max4-16frame.txt");
+
+  for (int i = 0; i < band.length; i++) {
+    band[i] = 0;
+    maxvalues[i] = 0;
+  }
 
   for (int j = 0; j < 49; j++) {
     for (int i = 0; i < 42; i++) {
       matrix.add(new PVector(6+i*13.2, 6+j*13.2));
     }
   }
-  rectMode(CENTER);
 }
 
 void draw() {
-  waveform.analyze();
+  counter++;
+  background(255);
+  if (counter > 16 && c.size() > 2000)
+    record = true;
+
   if (record) {
     beginRecord(PDF, "frame-####.pdf");
   }
-  background(255);
-  counter++;
+  fft.forward(dm.mix);
+
+  // GET MAX FOR EACH SPEC SIZE
+  for (int i = 0; i < fft.specSize(); i++) {
+    if (fft.indexToFreq(i) < values[0]) {
+      band[0]+=fft.getBand(i);
+    } else  if (fft.indexToFreq(i) < values[1]) {
+      band[1]+=fft.getBand(i);
+    } else  if (fft.indexToFreq(i) < values[2]) {
+      band[2]+=fft.getBand(i);
+    } else {
+      band[3]+=fft.getBand(i);
+    }
+  }
 
   if (counter > 16) {
-    for (int i = 0; i < samples; i++) {
-      total+= waveform.data[i];
-    }
-    total/=samples;
-    c.add(new Cross(matrix.get(num).x, matrix.get(num).y, map(total, -1, 1, -PI/2, (3*PI)/2)));
 
+    float f [] = new float [band.length];
+    for (int i = 0; i < band.length; i++) {
+      maxvalues[i] = max(band[i], maxvalues[i]);
+      //saveMax[i] = "" + maxvalues[i];
+      f[i] = map(band[i], 0, float(loadMax[i]), 0.5, 4);
+    }
+    f[3] = map(band[3], 0, 4000, 0.5, 4);
+
+    c.add(new Cross(matrix.get(num).x, matrix.get(num).y, f[0], f[1], f[2], f[3]));
     num++;
+    // saveStrings("max4-16frame.txt", saveMax);
+
+    for (int i = 0; i < band.length; i++) {
+      band[i] = 0;
+    }
+    println(maxvalues[0], maxvalues[1], maxvalues[2], maxvalues[3]);
     counter = 0;
   }
-  
-    for (int i = 0; i < c.size(); i++) {
+
+  for (int i = 0; i < c.size(); i++) {
     c.get(i).draw();
   }
+
 
 
   if (record) {

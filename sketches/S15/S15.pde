@@ -6,15 +6,15 @@ Minim minim;
 AudioPlayer dm;
 FFT fft;
 
-int values [] = {250, 500, 1000};
-float band [] = new float [4];
-float maxvalues [] = new float [4];
-float mediumvalues [] = new float [4];
+int values [] = {125, 250, 500, 1000, 2000};
+float band [] = new float [6];
+float maxvalues [] = new float [6];
+float mediumvalues [] = new float [6];
 String loadMax [];
 String loadMedium [];
 int num = 0;
-int howmany [] = new int [4];
-float mediums [] = new float [4];
+int howmany [] = new int [6];
+float mediums [] = new float [6];
 float total = 0;
 boolean record = false;
 
@@ -24,7 +24,7 @@ void setup() {
   dm = minim.loadFile("dm.mp3", 1024);
   dm.play();
   fft = new FFT(dm.bufferSize(), dm.sampleRate());
-  loadMax = loadStrings("max4.txt");
+  loadMax = loadStrings("max6.txt");
   loadMedium = loadStrings("output.txt");
 
   for (int i = 0; i < band.length; i++) {
@@ -38,8 +38,8 @@ void setup() {
 
   for (int i = 0; i < band.length; i++) {
     mediums[i] = map(map(mediums[i], 0, total, 0, 100), 0, 100, 0, height);
-    println(mediums[i]);
   }
+  println(mediums);
 }
 
 void draw() {
@@ -48,38 +48,49 @@ void draw() {
   if (record) {
     beginRecord(PDF, "frame-####.pdf");
   }
-  float gap = 12;
+
   stroke(0);
-  for (int i = 0; i < width; i++) {
-    line(int(i*gap* cos(-PI/2)), int(height - 2 + i * gap * sin(-PI/2)), int(i * gap * cos(0)), int(height - 2 + i * gap * sin(0)));
+  for (int i = 0; i < width/5; i++) {
+    line(width+3 + i*8* cos(PI), height + i * 8 * sin(PI), width+3 + i * 8 * cos(-PI/2), height + i * 8 * sin(-PI/2));
   }
 
   noStroke();
   fill(255);
-  rect(0, 0, width, int(mediums[0] + mediums[1] + mediums[2]));
+  rect(0, 0, width, height-mediums[mediums.length-1]);
 
   stroke(0);
-  for (int i = 0; i < width; i++) {
-    line(int(width + i * gap * cos(PI)), int(height - 2 + i * gap * sin(PI)), int(width + i * gap * cos(-PI/2)), int(height - 2 + i * gap * sin(-PI/2)));
+  for (int i = 0; i < width/5; i++) {
+    line(i*8 * cos(-PI/2), height + i * 8 * sin(-PI/2), i * 8 * cos(0), height + i * 8 * sin(0));
   }
 
   noStroke();
   fill(255);
-  rect(0, 0, width, int(mediums[1] + mediums[0] +3));
+  rect(0, 0, width, height-mediums[mediums.length-1] - mediums[mediums.length-2]+1);
 
 
+  // [0]
   stroke(0);
-  for (int i = height; i > 0; i--) {
-    line(0, i * 6, width, i*6);
-  }
-  for (int i = 0; i < width; i++) {
-    line(i * 6, mediums[0]+3, i* 6, height);
+  for (int i = 0; i < height/8; i++) {
+    line(i*8, 0, i*8, height);
   }
 
-  /*
+  for (int i = 0; i < height; i++) {
+    if(height - i * 8 > mediums[0])
+    line(0, height - i * 8, width, height - i * 8);
+  }
+
+  for (int i = 0; i < height/8; i++) {
+  line(i*8 + 4, int(mediums[0] + mediums[1]) + 1, i*8 + 4, height);
+  }
+  
+  for (int i = 0; i < height; i++) {
+    if(height - i * 8 > mediums[0] + mediums[1] + mediums[2])
+    line(0, height - i * 8 -4, width, height - i * 8 - 4);
+  }
+ 
   fft.forward(dm.mix);
-   
-   // GET MAX FOR EACH SPEC SIZE
+  /*
+  // GET MAX FOR EACH SPEC SIZE
    for (int i = 0; i < fft.specSize(); i++) {
    if (fft.indexToFreq(i) < values[0]) {
    band[0]+= map(fft.getBand(i), 0, maxvalues[0], 0, 1);
@@ -90,19 +101,27 @@ void draw() {
    } else  if (fft.indexToFreq(i) < values[2]) {
    band[2]+= map(fft.getBand(i), 0, maxvalues[2], 0, 1);
    howmany[2]++;
-   } else {
+   } else if (fft.indexToFreq(i) < values[3]) {
    band[3]+= map(fft.getBand(i), 0, maxvalues[3], 0, 1);
    howmany[3]++;
+   } else if (fft.indexToFreq(i) < values[4]) {
+   band[4]+= map(fft.getBand(i), 0, maxvalues[4], 0, 1);
+   howmany[4]++;
+   } else {
+   band[5]+= map(fft.getBand(i), 0, maxvalues[5], 0, 1);
+   howmany[5]++;
    }
    }
+   
    num++;
    for (int i = 0; i < band.length; i++) {
    mediumvalues[i] = band[i]/(num*howmany[i]);
    howmany[i] = 0;
    }
    saveStrings("output.txt", str(mediumvalues));
+   
+   println(mediumvalues[1]);
    */
-
   if (record) {
     endRecord();
     record = false;

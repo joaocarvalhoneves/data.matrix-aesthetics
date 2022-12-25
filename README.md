@@ -14,12 +14,29 @@ Despite the use of mostly deterministic systems based on the analysis of sound c
 ```graphql
 ./src/* 
   ├─ src/sketches/* - # code for generated outputs
-  │  ├─ A - # A
-  │  ├─ A - # A
-  │  ├─ A - # A
-  │  ├─ A - # A
-  │  ├─ A - # A
-  │  └─ A - # A
+  │  ├─ S1 - # outputs 1, 4, 5, 7
+  │  ├─ S2 - # output 9
+  │  ├─ S3 - # output 14
+  │  ├─ S4 - # outputs 16, 17
+  │  ├─ S5 - # output 10, 11, 27
+  │  ├─ S6 - # outputs 12, 13
+  │  ├─ S7 - # output 8
+  │  ├─ S8 - # outputs 2, 3
+  │  ├─ S9 - # output 6
+  │  ├─ S10 - # output 15
+  │  ├─ S11 - # output 22
+  │  ├─ S12 - # output 21
+  │  ├─ S13 - # outputs 18, 19, 20
+  │  ├─ S14 - # output 23
+  │  ├─ S15 - # output 24
+  │  ├─ S16 - # output 25
+  │  ├─ S17 - # outputs not selected 
+  │  ├─ S18 - # output 26
+  │  ├─ S19 - # outputs not selected
+  │  ├─ S20 - # output 28
+  │  ├─ S21 - # output 29
+  │  ├─ S22 - # outputs not selected
+  │  └─ S23 - # outputs not selected
   └─  src/visual essays/* - # generated outputs
      ├─ selected/* - # selected ouputs images
      └─ not selected/* - # not selected outputs images

@@ -31,7 +31,7 @@ void setup() {
   }
   rectMode(CENTER);
 
-  load = loadStrings("l.txt");
+  load = loadStrings("linedata.txt");
   for (int i = 0; i < load.length; i++) {
     String o [] = split(load[i], ',');
     println(o.length);

@@ -5,13 +5,12 @@ import processing.pdf.*;
 Minim minim;
 AudioPlayer dm;
 FFT fft;
-ArrayList <PVector> matrix = new ArrayList<PVector>();
-ArrayList <Cross> c = new ArrayList<Cross>();
+ArrayList <Line> l = new ArrayList<Line>();
 boolean record;
-int values [] = {250, 500, 1000};
-float band [] = new float [4];
-float maxvalues [] = new float [4];
-String saveMax [] = new String [4];
+int values [] = {125, 250, 500, 1000, 2000, 20000};
+float band [] = new float [6];
+float maxvalues [] = new float [6];
+String saveMax [] = new String [6];
 String loadMax [];
 float counter = 0;
 int num = 0;
@@ -25,24 +24,18 @@ void setup()
   fft = new FFT(dm.bufferSize(), dm.sampleRate() );
   rectMode(CENTER);
   stroke(0);
-  loadMax = loadStrings("max4-16frame.txt");
+  loadMax = loadStrings("max6-325frame.txt");
 
   for (int i = 0; i < band.length; i++) {
     band[i] = 0;
     maxvalues[i] = 0;
-  }
-
-  for (int j = 0; j < 49; j++) {
-    for (int i = 0; i < 42; i++) {
-      matrix.add(new PVector(6+i*13.2, 6+j*13.2));
-    }
   }
 }
 
 void draw() {
   counter++;
   background(255);
-  if (counter > 16 && c.size() > 2000)
+  if (counter > 325)
     record = true;
 
   if (record) {
@@ -58,43 +51,37 @@ void draw() {
       band[1]+=fft.getBand(i);
     } else  if (fft.indexToFreq(i) < values[2]) {
       band[2]+=fft.getBand(i);
-    } else {
+    } else if (fft.indexToFreq(i) < values[3]) {
       band[3]+=fft.getBand(i);
+    } else if (fft.indexToFreq(i) < values[4]) {
+      band[4]+=fft.getBand(i);
+    } else {
+      band[5]+=fft.getBand(i);
     }
   }
 
-  if (counter > 16) {
+  if (counter > 325) {
     float f [] = new float [band.length];
     for (int i = 0; i < band.length; i++) {
-      maxvalues[i] = max(band[i], maxvalues[i]);
+      // maxvalues[i] = max(band[i], maxvalues[i]);
       //saveMax[i] = "" + maxvalues[i];
-      f[i] = map(band[i], 0, float(loadMax[i]), 0, 1);
+      f[i] = map(band[i], 0, float(loadMax[i]), 0.5, 3.7);
     }
-    int which = 0;
-    if (f[0] > f[1] && f[0] > f[2] && f[0] > f[3])
-      which = 0;
-    else  if (f[1] > f[0] && f[1] > f[2] && f[1] > f[3])
-      which = 1;
-    else  if (f[2] > f[0] && f[2] > f[1] && f[2] > f[3])
-      which = 2;
-    else  if (f[3] > f[0] && f[3] > f[1] && f[3] > f[2])
-      which = 3;
 
-    c.add(new Cross(matrix.get(num).x, matrix.get(num).y, which));
+    l.add(new Line(num*4, f));
     num++;
-    // saveStrings("max4-16frame.txt", saveMax);
+    //saveStrings("max6-325frame.txt", saveMax);
 
     for (int i = 0; i < band.length; i++) {
       band[i] = 0;
     }
-    println(maxvalues[0], maxvalues[1], maxvalues[2], maxvalues[3]);
+    // println(maxvalues[0], maxvalues[1], maxvalues[2], maxvalues[3]);
     counter = 0;
   }
 
-  for (int i = 0; i < c.size(); i++) {
-    c.get(i).draw();
+  for (int i = 0; i < l.size(); i++) {
+    l.get(i).draw();
   }
-
 
 
   if (record) {
