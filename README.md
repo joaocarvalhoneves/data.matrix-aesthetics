@@ -38,7 +38,7 @@ Despite the use of mostly deterministic systems based on the analysis of sound c
   │  ├─ S22 - # outputs not selected
   │  └─ S23 - # outputs not selected
   └─  src/visual essays/* - # generated outputs
-     ├─ selected/* - # selected ouputs images
+     ├─ selected/* - # selected outputs images
      └─ not selected/* - # not selected outputs images
 ```
 
