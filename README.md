@@ -35,7 +35,7 @@ The goal was to have printable outputs on a short term so they could guide the r
 
 In the first stage of implementation we focused on finding patterns originated by the composition structure itself. To make them visible, different grids composed of distinct glyphs were tested. By analysing the sound more or less regularly it was possible to adjust the number of elements in the artwork. A sequential approach also has the ability to show the flow of the composition — how the frequencies values vary from start to finish and where the volume peaks are. Some of the generated and selected results display this more effectively than others. We entitled these sketches sequential.
 		
-When we looked into the composition from a general standpoint, we envisioned new generation systems that use sound components to create abstract outputs. We considered this type of methods and level of abstraction to be our boundary since we did not intend the outputs to be on the verge of total ambiguity.
+When we looked into the composition from a general standpoint, we envisioned new generation systems that use sound components to create abstract outputs. We considered this type of methods and level of abstraction to be our boundary since we did not intend the outputs to be on the verge of total ambiguity. We called this approach global.
 
 From within all the generated output and coding errors we selected the most successful and discarded the lesser ones (mostly all 3D variants). We realised that, despite following the created list, some of the best artworks came out from analysing the work we were developing and redesigning it. 
 
@@ -50,6 +50,11 @@ For the last stage we gathered our selection and started building the compendium
 <p align="center">The compendium</p>
 
 ### References
+
+- Lewis, M. (2008). *Evolutionary Visual Art and Design*. In J. Romero & P. Machado (Eds.), The Art of Artificial Evolution: A Handbook on Evolutionary Art and Music (pp. 3–37). Springer Berlin Heidelberg. [[link](https://link.springer.com/chapter/10.1007/978-3-540-72877-1_1)]
+- Machado, P., Romero, J., & Manaris, B. (2008). *Experiments in Computational Aesthetics*. In J. Romero & P. Machado (Eds.), The Art of Artificial Evolution: A Handbook on Evolutionary Art and Music (pp. 381–415). Springer Berlin Heidelberg. [[link](https://link.springer.com/chapter/10.1007/978-3-540-72877-1_18)]
+- Martins, T. (2021). *Automated Evolution for Design*. University of Coimbra, Portugal. [[link](https://estudogeral.sib.uc.pt/handle/10316/96431)]
+- Shiffman, D. (2012). *The Evolution of Code*. In The Nature of Code (pp. 390–443). [[link](https://natureofcode.com/book/chapter-9-the-evolution-of-code/)]
 
 ### Acknowledgements
 A huge thanks to Manuel Lages for the careful hand-made bookbinding and to the teaching staff for all the advice and availability throughout every stage of this project — [Sérgio Rebelo](https://cdv.dei.uc.pt/authors/sergio-rebelo/), [Tiago Martins](http://cdv.dei.uc.pt/people/tiago-martins/), [João Cunha](https://cdv.dei.uc.pt/authors/joao-cunha/), [Penousal Machado](https://cdv.dei.uc.pt/authors/penousal-machado/) and [Pedro Silva](https://cdv.dei.uc.pt/authors/pedro-silva/).
