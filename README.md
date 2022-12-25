@@ -59,8 +59,7 @@ shows how to use the computer as an artistic medium in its own right. [link](htt
 - Gardiner, I. (2007). *Music, Sound, and the Moving Image*. Liverpool University Press. [link](https://muse.jhu.edu/journal/465)
 - Ikeda, R. (2006). *damatics*. [link](https://www.ryojiikeda.com/project/datamatics/datamatics.)
 - Jewanski et al. (2020). *Audiovisual hallucinations in the synesthetic films of Jordan Belson and James Whitney*. Music and Synesthesia, p. 150. Universität Wien. [link](https://minerva-access.unimelb.edu.au/bitstream/handle/11343/258611/Music_and_Synesthesia_BookofAbstracts_2020.pdf?sequence=2&isAllowed=y#page=163)
-- Lab, S. (2017). *Ted g ̈ardestad*. [link](https://www.stockholmdesignlab.se/work/ted-
-gardestad)
+- Lab, S. (2017). *Ted g ̈ardestad*. [link](https://www.stockholmdesignlab.se/work/tedgardestad)
 - Moritz, W. (2019). *John Whitney: Technological visionary, animation pioneer*. Co-
 Editors: Jillian Coorey, Andre Murnieks, Heather Shaw and Rebecca Tegtmeyer,
 p. 56. [link](https://www.awn.com/mag/issue2.5/2.5pages/2.5moritzwhitney.html)
