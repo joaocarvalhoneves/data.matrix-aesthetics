@@ -8,7 +8,7 @@ This repository contains the computational material used for a visual essay seri
 
 ### About
 
-Despite the use of mostly deterministic systems based on the analysis of sound components such as amplitude and frequency, the generated outputs link up as a series of abstract and nonconventional portraits that link the fields of music, image, computing and mathematics. It seeks to broaden imagination and provide guidelines for future work. This is the result of an academic project developed for the Computational Creativity for Design course unit of the master's degree in [Design and Multimedia](https://dm.dei.uc.pt) ([Faculty of Sciences and Technology of the University of Coimbra](https://www.uc.pt/)). The following section explains the process and its various stages.
+Despite the use of mostly deterministic systems based on the analysis of sound components such as amplitude and frequency, the generated outputs link up as a series of abstract and nonconventional portraits that link the fields of music, image, computing and mathematics. It seeks to broaden imagination and provide guidelines for future work. This is the result of an academic project developed for the Computational Creativity for Design course unit of the master's degree in [Design and Multimedia](https://dm.dei.uc.pt) ([Faculty of Sciences and Technology of the University of Coimbra](https://www.uc.pt/)). 
 
 ### Repository File Tree
 ```graphql
@@ -27,7 +27,7 @@ Despite the use of mostly deterministic systems based on the analysis of sound c
 
 ### Process
 We started by writing a list of possible systems and sketches to be developed. Before starting to implement them, we had to standardise the artworks proportion, analyse the mentioned list and sort it out. We used the following criteria:
-1. Type (sequential or global approaches); 
+1. Type (sequential or global approach); 
 2. Similarity with its precedent; 
 3. Time-consuming level. 
 
@@ -51,55 +51,28 @@ For the last stage we gathered our selection and started building the compendium
 
 ### References
 
-- Lewis, M. (2008). *Evolutionary Visual Art and Design*. In J. Romero & P. Machado (Eds.), The Art of Artificial Evolution: A Handbook on Evolutionary Art and Music (pp. 3–37). Springer Berlin Heidelberg. [[link](https://link.springer.com/chapter/10.1007/978-3-540-72877-1_1)]
-- Machado, P., Romero, J., & Manaris, B. (2008). *Experiments in Computational Aesthetics*. In J. Romero & P. Machado (Eds.), The Art of Artificial Evolution: A Handbook on Evolutionary Art and Music (pp. 381–415). Springer Berlin Heidelberg. [[link](https://link.springer.com/chapter/10.1007/978-3-540-72877-1_18)]
-- Martins, T. (2021). *Automated Evolution for Design*. University of Coimbra, Portugal. [[link](https://estudogeral.sib.uc.pt/handle/10316/96431)]
-- Shiffman, D. (2012). *The Evolution of Code*. In The Nature of Code (pp. 390–443). [[link](https://natureofcode.com/book/chapter-9-the-evolution-of-code/)]
-
-
-- Zheng, R. (2022). *Look/hear.* [link](https://www.ranzhengdesign.com/look-hear/)
-
-
-M. E. Bute, “Mary ellen bute: Pioneer animator,” Personal and professional life
-of Mary Ellen Bute, 2020.
-2. H. Balme, “Audiovisual hallucinations in the synesthetic films of jordan belson and
-james whitney,” Music and Synesthesia, p. 150, 2020.
-3. I. Gardiner, “Oskar fischinger,” Music, Sound, and the Moving Image, vol. 1, no. 1,
-pp. 117–118, 2007.
-4. L. Gibson, “John whitney: Technological visionary, animation pioneer,” Co-
+- Ash, M. (2005). *Simulation and visualization of a 3d fluid*. Université d'Orléans in Orléans. [link](https://www.mikeash.com/thesis/thesis-en.pdf) 
+- Baecker, R. (2021). *floating codes - work in progress*. [link](https://vimeo.com/619068326)
+- Basquin, K. (2020). *Mary ellen bute: Pioneer animator*. Personal and professional life of Mary Ellen Bute. EUA, Indiana University Press. [link](https://www.jstor.org/stable/j.ctv14npk67)
+- Bonnett, J. (2000). *Design by Numbers (John Maeda)*. A pioneering graphic designer
+shows how to use the computer as an artistic medium in its own right. [link](https://books.google.pt/books?hl=pt-PT&lr=&id=cptXSf5kS_IC&oi=fnd&pg=PA11&dq=Design+by+Numbers+(John+Maeda)&ots=xbG_oL8VLk&sig=HPrse-ED19iQZgsnHnX3vAB6hpQ&redir_esc=y#v=onepage&q=Design%20by%20Numbers%20(John%20Maeda)&f=false)
+- Gardiner, I. (2007). *Music, Sound, and the Moving Image*. Liverpool University Press. [link](https://muse.jhu.edu/journal/465)
+- Ikeda, R. (2006). *damatics*. [link](https://www.ryojiikeda.com/project/datamatics/datamatics.)
+- Jewanski et al. (2020). *Audiovisual hallucinations in the synesthetic films of Jordan Belson and James Whitney*. Music and Synesthesia, p. 150. Universität Wien. [link](https://minerva-access.unimelb.edu.au/bitstream/handle/11343/258611/Music_and_Synesthesia_BookofAbstracts_2020.pdf?sequence=2&isAllowed=y#page=163)
+- Lab, S. (2017). *Ted g ̈ardestad*. [link](https://www.stockholmdesignlab.se/work/ted-
+gardestad)
+- Moritz, W. (2019). *John Whitney: Technological visionary, animation pioneer*. Co-
 Editors: Jillian Coorey, Andre Murnieks, Heather Shaw and Rebecca Tegtmeyer,
-p. 56, 2019.
-5. J. Bonnett, “Design by numbers (john maeda),” A pioneering graphic designer
-shows how to use the computer as an artistic medium in its own right., 2000.
-6. D. Rush, “Dasha rush presents: Aurora cerebralis.” https://vimeo.com/357400767.
-(accessed Nov. 6, 2022).
-7. Synthestruct, “Vast.” https://www.synthestruct.com/vast/. (accessed Nov. 6,
-2022).
-8. R. Baecker, “floating codes - work in progress.” https://vimeo.com/619068326.
-(accessed Nov. 6, 2022).
-9. R. Ikeda, “Datamatics.” https://www.ryojiikeda.com/project/datamatics/datamatics.
-(accessed Nov. 6, 2022).
-
-11. S. D. Lab, “Ted g ̈ardestad.” https://www.stockholmdesignlab.se/work/ted-
-gardestad. (accessed Nov. 6, 2022).
-12. D. Mrugala, “Sound of space.” https://thedotisblack.com/tagged/space%20exploration.
-(accessed Nov. 6, 2022).
-13. G. Widmer, “Automatic recognition of famous artists by machine,” Recognising
-famous musicians (concert pianists), based on their style of playing., 2004.
-14. A. de Almeida Portela Viana De Sa, A Perceptual Approach to Audio-Visual Instru-
-ment Design, Composition and Performance. PhD thesis, Goldsmiths, University
-of London, November 2016.
-15. K. Shim, “Computational approach to graphic design,” The International Journal
-of Visual Design, 2020.
-16. M. Ash, “Simulation and visualization of a 3d fluid,” Master Thesis, 2005.
+p. 56. [link](https://www.awn.com/mag/issue2.5/2.5pages/2.5moritzwhitney.html)
+- Mrugala, D. (2018). *Sound of space*. [link](https://thedotisblack.com/tagged/space%20exploration)
+- Synthestruct. (2021). *Vast*. [link](https://www.synthestruct.com/vast/)
+- Rush, D. (2019). *Dasha rush presents: Aurora cerebralis*. [link](https://vimeo.com/357400767)
+- Sa, A. (2016). *A Perceptual Approach to Audio-Visual Instrument Design, Composition and Performance*. Goldsmiths, University of London. [link](https://www.researchgate.net/publication/310313683_A_Perceptual_Approach_to_Audio-Visual_Instrument_Design_Composition_and_Performance)
+- Shim, K. (2020). *Computational approach to graphic design*. The International Journal
+of Visual Design 14(1). [link](https://cgscholar.com/bookstore/works/computational-approach-to-graphic-design)
+- Widmer, G. and Zanon. P. (2004). *Automatic recognition of famous artists by machine*. Recognising
+famous musicians (concert pianists), based on their style of playing. Johannes Kepler University Linz. [link](https://www.researchgate.net/publication/200806395_Automatic_Recognition_of_Famous_Artists_by_Machine) 
+- Zheng, R. (2022). *Look/hear*. [link](https://www.ranzhengdesign.com/look-hear/)
 
 ### Acknowledgements
 A huge thanks to Manuel Lages for the careful hand-made bookbinding and to the teaching staff for all the advice and availability throughout every stage of this project — [Sérgio Rebelo](https://cdv.dei.uc.pt/authors/sergio-rebelo/), [Tiago Martins](http://cdv.dei.uc.pt/people/tiago-martins/), [João Cunha](https://cdv.dei.uc.pt/authors/joao-cunha/), [Penousal Machado](https://cdv.dei.uc.pt/authors/penousal-machado/) and [Pedro Silva](https://cdv.dei.uc.pt/authors/pedro-silva/).
-
-
-
-
-
-
-
-
