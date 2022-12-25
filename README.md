@@ -44,8 +44,8 @@ For the last stage we gathered our selection and started building the compendium
 ### Editorial Object
 
 <p align="center" margin-top="20px"> 
-  <img src="/visual%20essays/gif.gif">
-   <img src="/visual%20essays/gif.gif">
+  <img width=200px src="/visual%20essays/gif.gif">
+   <img width=200px src="/visual%20essays/gif.gif">
 </p>
 <p align="center">The compendium</p>
 
