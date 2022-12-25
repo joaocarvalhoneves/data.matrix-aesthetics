@@ -81,7 +81,6 @@ void draw() {
   }
 }
 
-
 void keyPressed() {
   if (key == ' ') {
     debug = !debug;
