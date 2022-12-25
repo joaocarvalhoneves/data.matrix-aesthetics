@@ -3,21 +3,10 @@ This repository contains the computational material used for a visual essay seri
 
 
 <p align="center">
+
   <img src="/visual%20essays/gif.gif">
 </p>
-*Selected visual essays.*
-
-
-### File Tree
-```graphql
-./src/* 
-  ├─ src/sketches - # code for generated outputs
-  └─  src/visual essays - # graphic outputs from the sketches
-     ├─ A - # A
-     └─ A - # A
-```
-
-
+<p align="center"> Selected visual essays. </p>
 
 ### About
 
@@ -27,6 +16,16 @@ Despite the use of mostly deterministic systems based on the analysis of sound c
 
 
 ### Editorial Object
+
+
+### Repository File Tree
+```graphql
+./src/* 
+  ├─ src/sketches - # code for generated outputs
+  └─  src/visual essays - # graphic outputs from the sketches
+     ├─ A - # A
+     └─ A - # A
+```
 
 
 ### References
