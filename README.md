@@ -58,8 +58,6 @@ From within all the generated output and coding errors we selected the most succ
 
 For the last stage we gathered our selection and started building the compendium. We created a symbol system that works like an index to identify and organise the outputs and we used coloured paper to distinguish the book sections. After including part of this paper as an introduction for the compendium, we submitted the document for printing tests, followed by its final versions.
 
-### Editorial Object
-
 <p align="center" margin-top="20px"> 
   <img width=400px src="/visual%20essays/compendium.png">
 </p>
