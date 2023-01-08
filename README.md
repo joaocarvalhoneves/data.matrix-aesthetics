@@ -56,7 +56,7 @@ When we looked into the composition from a general standpoint, we envisioned new
 
 From within all the generated output and coding errors we selected the most successful and discarded the lesser ones (mostly all 3D variants). We realised that, despite following the created list, some of the best artworks came out from analysing the work we were developing and redesigning it. 
 
-For the last stage we gathered our selection and started building the compendium. We created a symbol system that works like an index to identify and organise the outputs and we used coloured paper to distinguish the book sections. After including part of this paper as an introduction for the compendium, we submitted the document for printing tests, followed by its final versions.
+For the last stage we gathered our selection and started building the compendium. We created a symbol system that works like an index to identify and organise the outputs and we used grey paper to distinguish the book sections. After including part of this paper as an introduction for the compendium, we submitted the document for printing tests, followed by its final versions.
 
 <p align="center" margin-top="20px"> 
   <img width=400px src="/compendium.png">
